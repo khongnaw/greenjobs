@@ -51,7 +51,7 @@ function jobswithKeyword(data, keyword) {
 
 /**
  * This function can be passed greenjobs and returns an array containing objects with keys
- * ìindustryî and ìjobsî. The value of the industry key is an industry name, and the value
+ * ‚Äúindustry‚Äù and ‚Äújobs‚Äù. The value of the industry key is an industry name, and the value
  * of jobs is the number of jobs associated with that industry.
  * @param data, Green Employers array of objects
  * @return array, [{industry:... jobs:...}, {industry:... jobs:...} ...]
@@ -82,4 +82,3 @@ function maxIndustryJobs(data) {
     return num["jobs"];
   });
 }
-console.log(countyGreenJobs(greenjobs));
