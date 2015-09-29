@@ -28,21 +28,17 @@
 <p>This JavaScript code contains set of functions to perform queries on a data structure taken from the Hawaii Directory of Green Employers.</p>
 
 <h1>
-<a id="working-functions" class="anchor" href="#working-functions" aria-hidden="true"><span class="octicon octicon-link"></span></a>Working functions</h1>
-
-<p>countyGreenJobs,
-jobswithKeyword,
-listIndustries</p>
-
-<h1>
 <a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h1>
 
 <p>Here are example calls to the functions:</p>
 
-<pre><code> &lt;script&gt;
-     console.log("Industries", listIndustries(greenjobs));
-     console.log("County and number of Jobs", countyGreenJobs(greenjobs));
- &lt;/script&gt;
+<pre><code>&lt;script&gt;
+  console.log("Industries", listIndustries(greenjobs));
+  console.log("County and number of Jobs", countyGreenJobs(greenjobs));
+  console.log("KeyWord search (PV)", jobswithKeyword(greenjobs,"PV"));
+  console.log("Industry Jobs", industryJobs(greenjobs));
+  console.log("Max Industry Jobs", maxIndustryJobs(greenjobs));
+&lt;/script&gt;
 </code></pre>
 
 <h1>
