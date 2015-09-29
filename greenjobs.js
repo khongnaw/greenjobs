@@ -6,6 +6,8 @@
 /*globals _, greenjobs */
 /*exported listIndustries*/
 /*exported jobswithKeyword*/
+/*exported industryJobs*/
+/*exported maxIndustryJobs*/
 //var testdata = greenjobs.splice(0,4);
 
 /**
@@ -17,6 +19,7 @@
 function listIndustries(data) {
   return _.uniq(_.pluck(data, "Industry"));
 }
+
 /**
  * This function can be passed greenjobs and returns an object where the keys are County
  * names and the values are the number of Green Jobs listed in that County.
@@ -37,12 +40,15 @@ function countyGreenJobs(data) {
  */
 
 function jobswithKeyword(data, keyword) {
-  return _.map(data, function (num) {
-    if (num["Job Title"].search(keyword) !== -1) {
-      return num["Industry"];
-    }
+  var filtered = _.filter(data,function(num){
+    return num["Job Title"].search(keyword) !== -1;
   });
+  return _.map(filtered,function(num){
+    return num["Job Title"];
+  });
+
 }
+
 /**
  * This function can be passed greenjobs and returns an array containing objects with keys
  * “industry” and “jobs”. The value of the industry key is an industry name, and the value
@@ -51,10 +57,18 @@ function jobswithKeyword(data, keyword) {
  * @return array, [{industry:... jobs:...}, {industry:... jobs:...} ...]
  */
 
-function industryJobs(data){
-  return 2 ;//_.map(data, function (num)
-      // Group object by Industry
-
+function industryJobs(data) {
+  var groupByIn = _.groupBy(data, function (num) {
+    return num["Industry"];
+  });
+  return _.map(groupByIn, function (num, key) {
+    return {
+      industry: key,
+      jobs: _.reduce(num, function (memo) {
+        return memo + 1;
+      }, 0)
+    };
+  });
 
 }
 /**
@@ -62,4 +76,10 @@ function industryJobs(data){
  * @param data, Green Employers array of objects
  * @return object, {industry:..., jobs:...}
  */
+
+function maxIndustryJobs(data) {
+  return _.max(industryJobs(data), function(num){
+    return num["jobs"];
+  });
+}
 console.log(countyGreenJobs(greenjobs));
