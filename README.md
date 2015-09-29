@@ -13,7 +13,7 @@ Provide the following scripts in your html file:
 Here are example calls to the functions:
 ```
  <script>
-     console.log("Industries", listIndustries(data));
-     console.log("County and number of Jobs", countyGreenJobs(uhdata));
+     console.log("Industries", listIndustries(greenjobs));
+     console.log("County and number of Jobs", countyGreenJobs(greenjobs));
    </script>
 ```
