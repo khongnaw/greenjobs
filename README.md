@@ -12,8 +12,11 @@ Provide the following scripts in your html file:
 # Usage
 Here are example calls to the functions:
 ```
- <script>
-     console.log("Industries", listIndustries(greenjobs));
-     console.log("County and number of Jobs", countyGreenJobs(greenjobs));
-   </script>
+<script>
+  console.log("Industries", listIndustries(greenjobs));
+  console.log("County and number of Jobs", countyGreenJobs(greenjobs));
+  console.log("KeyWord search (PV)", jobswithKeyword(greenjobs,"PV"));
+  console.log("Industry Jobs", industryJobs(greenjobs));
+  console.log("Max Industry Jobs", maxIndustryJobs(greenjobs));
+</script>
 ```
