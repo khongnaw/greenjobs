@@ -3,8 +3,8 @@
  * Created by sora1234 on 9/29/2015.
  */
 
-/*globals _, greenjobs */
-/*exported listIndustries*/
+/*globals _*/
+/*exported listIndustries, countyGreenJobs*/
 /*exported jobswithKeyword*/
 /*exported industryJobs*/
 /*exported maxIndustryJobs*/
@@ -17,6 +17,15 @@
  * @return array ,array of industry names
  * */
 function listIndustries(data) {
+  //Check if data set contains an element missing Industry field
+  if(!_.every(data,function(val){return val.hasOwnProperty("Industry");})){
+    throw new Error("ERROR: missing the Industry field");
+  }
+
+  //Check if data set contains an element with empty string for Industry
+  if(!_.every(data,function(val){return val["Industry"] !== "" ;})){
+    throw new Error("ERROR: Industry field contains empty string");
+  }
   return _.uniq(_.pluck(data, "Industry"));
 }
 
@@ -51,7 +60,7 @@ function jobswithKeyword(data, keyword) {
 
 /**
  * This function can be passed greenjobs and returns an array containing objects with keys
- * “industry” and “jobs”. The value of the industry key is an industry name, and the value
+ * industry and jobs. The value of the industry key is an industry name, and the value
  * of jobs is the number of jobs associated with that industry.
  * @param data, Green Employers array of objects
  * @return array, [{industry:... jobs:...}, {industry:... jobs:...} ...]
